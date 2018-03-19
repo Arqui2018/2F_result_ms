@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  result_ms:
+    build: .
+    command: python manage.py runserver 0.0.0.0:4005
+    ports:
+      - "4005:4005"
+    depends_on:
+      - result_db
+  result_db:
+    image: mysql
+    ports:
+      - "3013:3013"
+    environment:
+      MYSQL_ROOT_PASSWORD: arqui
+      MYSQL_USER: user
+      MYSQL_PASSWORD: arqui
+      MYSQL_DATABASE: result_db_mysql
+      MYSQL_HOST: result_db
