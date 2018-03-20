@@ -1,0 +1,214 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for Results
+  description: Python + MySQL
+  license:
+    name: Apuesta mUNdial - SA 2018-I
+host: 192.168.99.101:4005
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /results:
+    post:
+      summary: Creates a new result
+      operationId: createResult
+      parameters:
+        - name: result
+          in: body
+          required: true
+          description: Result Object
+          schema:
+            $ref: '#/definitions/ResultInput'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all results
+      operationId: getAllResults
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/ResultsList'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /results/{user_id}:
+    get:
+      summary: Returns a result with the given id
+      operationId: getResultByuser_Id
+      parameters:
+        - name: user_id
+          in: path
+          description: The user_id of the result to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Result'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a result with the given id
+      operationId: updateResult
+      parameters:
+        - name: user_id
+          in: path
+          description: The user_id of the result to be updated
+          required: true
+          type: integer
+        - name: result
+          in: body
+          required: true
+          description: Result Object
+          schema:
+            $ref: '#/definitions/ResultInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a result with the given id
+      operationId: deleteResult
+      parameters:
+        - name: id
+          in: path
+          description: The user_id of the result to be deleted
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+
+  # Result
+  Result:
+    type: object
+    properties:
+      id:
+        type: integer
+      user_id:
+        type: integer
+      monto:
+        type: integer
+      fecha:
+        type: string
+      gol_1:
+        type: integer
+      gol_2:
+        type: integer
+      winner:
+        type: boolean
+      partido_id:
+        type: integer
+      wallet_id:
+        type: integer
+
+  ResultInput:
+    type: object
+    properties:
+      id:
+        type: integer
+      user_id:
+        type: integer
+      monto:
+        type: integer
+      fecha:
+        type: string
+      gol_1:
+        type: integer
+      gol_2:
+        type: integer
+      winner:
+        type: boolean
+      partido_id:
+        type: integer
+      wallet_id:
+        type: integer
+
+  ResultsList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Result'
+
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - code
+    properties:
+      message:
+        type: string
+      code:
+        type: number
+      description:
+        type: object
