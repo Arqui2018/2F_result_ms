@@ -76,29 +76,29 @@ WSGI_APPLICATION = 'result_ms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'result_db_mysql',
-        'OPTIONS': {
-            'init_command': 'SET innodb_strict_mode=1',
-        },
-        'USER': 'root',
-        'PASSWORD': 123,
-        #'HOST': 'result_db',
-        #'PORT': 3013,
-    }
-}
-
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.mysql',
 #        'NAME': 'result_db_mysql',
-#        'USER': 'user',
-#        'PASSWORD': 'arqui',
-#        'HOST': 'result_db',
+#        'OPTIONS': {
+#            'init_command': 'SET innodb_strict_mode=1',
+#        },
+#        'USER': 'root',
+#        'PASSWORD': 123,
+#        #'HOST': 'result_db',
+#        #'PORT': 3013,
 #    }
 #}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'result_db_mysql',
+        'USER': 'user',
+        'PASSWORD': 'arqui',
+        'HOST': 'result_db',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
