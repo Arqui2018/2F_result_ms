@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.utils import timezone
 from .models import Result
 
 class ResultSerializer(serializers.ModelSerializer):
@@ -8,10 +9,10 @@ class ResultSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     user_id = serializers.IntegerField()
     monto = serializers.IntegerField()
-    fecha = serializers.DateTimeField()
+    fecha = serializers.DateTimeField(default=timezone.now)
     gol_1 = serializers.IntegerField()
     gol_2 = serializers.IntegerField()
-    winner = serializers.BooleanField()
+    winner = serializers.BooleanField(default=False)
     partido_id = serializers.IntegerField()
     wallet_id = serializers.IntegerField()
 
@@ -23,7 +24,7 @@ class ResultSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         """
-        Update and return an existing `Serie` instance, given the validated data.
+        Update and return an existing `Result` instance, given the validated data.
         """
         instance.id = validated_data.get('id', instance.id)
         instance.user_id = validated_data.get('user_id', instance.user_id)

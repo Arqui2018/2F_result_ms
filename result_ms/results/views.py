@@ -31,29 +31,29 @@ def result_list(request):
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = ResultSerializer(data=data)
-        if serializer.isvalid():
+        if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
 
 @csrf_exempt
-def result_detail(request, user_id):
+def result_detail(request, id):
     """
     Retrieve, update or delete a result.
     """
     try:
-        result = Result.objects.filter(user_id=user_id)
+        result = Result.objects.get(id=id)
     except Result.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = ResultSerializer(result, many=True)
+        serializer = ResultSerializer(result)
         return JSONResponse(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = ResultSerializer(result, data=data)
-        if serializer.isvalid():
+        if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data)
         return JSONResponse(serializer.errors, status=400)

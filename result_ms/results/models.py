@@ -12,7 +12,7 @@ class Result(models.Model):
     fecha = models.DateTimeField(default=timezone.now)
     gol_1 = models.IntegerField(default=0)
     gol_2 = models.IntegerField(default=0)
-    winner = models.BooleanField(default=False)
+    winner = models.BooleanField(default=False, blank=True)
     partido_id = models.IntegerField()
     wallet_id = models.IntegerField()
 
