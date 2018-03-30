@@ -26,7 +26,8 @@ SECRET_KEY = '=-ro)+n^k_#au#ej7t6c2*dn2+f2ov42tx+e*2tl9zu@gxtog*'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.99.101'
+    '192.168.99.101',
+    'localhost'
 ]
 
 
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'results',
-    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
