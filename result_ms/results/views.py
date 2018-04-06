@@ -59,5 +59,6 @@ def result_detail(request, id):
         return JSONResponse(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
+        serializer = ResultSerializer(result)
         result.delete()
-        return HttpResponse(status=204)
+        return JSONResponse(serializer.data, status=204)
