@@ -1,4 +1,4 @@
-pip==9.0.2
+pip
 appdirs==1.4.3
 Django==1.11
 djangorestframework==3.6.2

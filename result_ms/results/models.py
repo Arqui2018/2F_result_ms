@@ -8,12 +8,12 @@ from django.utils import timezone
 class Result(models.Model):
     id = models.AutoField(primary_key=True)
     user_id = models.IntegerField()
-    monto = models.IntegerField()
-    fecha = models.DateTimeField(default=timezone.now)
-    gol_1 = models.IntegerField(default=0)
-    gol_2 = models.IntegerField(default=0)
+    amount = models.IntegerField()
+    date = models.DateTimeField(default=timezone.now)
+    g_local = models.IntegerField(default=0)
+    g_visit = models.IntegerField(default=0)
     winner = models.BooleanField(default=False, blank=True)
-    partido_id = models.IntegerField()
+    match_id = models.IntegerField()
     wallet_id = models.IntegerField()
 
     #def __str__(self):
