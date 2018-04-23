@@ -62,3 +62,31 @@ def result_detail(request, id):
         serializer = ResultSerializer(result)
         result.delete()
         return JSONResponse(serializer.data, status=204)
+
+@csrf_exempt
+def result_user(request, user_id):
+    """
+    List all code results by user_id
+    """
+    try:
+        result = Result.objects.filter(user_id=user_id)
+    except Result.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = ResultSerializer(result, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def result_match(request, match_id):
+    """
+    List all code results by match_id
+    """
+    try:
+        result = Result.objects.filter(match_id=match_id)
+    except Result.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = ResultSerializer(result, many=True)
+        return JSONResponse(serializer.data)
