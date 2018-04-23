@@ -10,6 +10,14 @@ Comandos para:
 `docker-compose run --rm result_ms python manage.py shell`
 
 ---
+
+Filtro de Rutas:
+1. user_id:
+`[url]:4005/results/users/[user_id]`
+
+2. match_id:
+`[url]:4005/results/matches/[match_id]`
+
 ---
 # [Django REST framework][docs]
 
