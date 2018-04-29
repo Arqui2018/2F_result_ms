@@ -25,7 +25,7 @@ SECRET_KEY = '=-ro)+n^k_#au#ej7t6c2*dn2+f2ov42tx+e*2tl9zu@gxtog*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['result_ms:4005']
+ALLOWED_HOSTS = ['result_ms']
 
 
 # Application definition
@@ -136,3 +136,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+## logger
+
+LOGGING = {
+    'handlers': {
+        'null': {
+            'class': 'logging.NullHandler',
+        },
+    },
+    'loggers': {
+        'django.security.DisallowedHost': {
+            'handlers': ['null'],
+            'propagate': False,
+        },
+    },
+}
