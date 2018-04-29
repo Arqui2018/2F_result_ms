@@ -140,6 +140,8 @@ STATIC_URL = '/static/'
 ## logger
 
 LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
     'handlers': {
         'null': {
             'class': 'logging.NullHandler',
