@@ -90,7 +90,7 @@ DATABASES = {
        'NAME': 'result_db_mysql',
        'USER': 'user',
        'PASSWORD': 'arqui',
-       'HOST': 'result_db',
+       'HOST': 'result-db',
    }
 }
 

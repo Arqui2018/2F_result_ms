@@ -17,4 +17,4 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: arqui
       MYSQL_DATABASE: result_db_mysql
-      MYSQL_HOST: result_db
+      MYSQL_HOST: result-db
