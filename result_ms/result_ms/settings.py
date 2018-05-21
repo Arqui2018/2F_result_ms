@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'result_ms.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'result_db_mysql',
+       'NAME': 'result-db-mysql',
        'USER': 'user',
        'PASSWORD': 'arqui',
        'HOST': 'result-db',
